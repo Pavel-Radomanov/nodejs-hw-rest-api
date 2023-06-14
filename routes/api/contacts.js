@@ -1,17 +1,18 @@
 const express = require("express");
-const Joi = require("joi");
+// const Joi = require("joi");
 const router = express.Router();
 
 const contacts = require("../../models/contacts");
-const HttpError = require("../../helpers/HttpErrorHelper");
-
-const addSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().email().required(),
-  phone: Joi.string()
-    .pattern(/^\(\d{3}\) \d{3}-\d{4}$/)
-    .required(),
-});
+// const HttpError = require("../../helpers/HttpError");
+const HttpError = require("../../helpers");
+const addSchema = require("../../schemas");
+// const addSchema = Joi.object({
+//   name: Joi.string().required(),
+//   email: Joi.string().email().required(),
+//   phone: Joi.string()
+//     .pattern(/^\(\d{3}\) \d{3}-\d{4}$/)
+//     .required(),
+// });
 
 router.get("/", async (req, res, next) => {
   try {
