@@ -1,3 +1,3 @@
-const addSchema = require("./validation");
+const addSchema = require("./joiValidation");
 
 module.exports = { addSchema };
