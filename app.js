@@ -1,8 +1,18 @@
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
-
+const mongoose = require("mongoose");
 // console.log();
+
+// mongoose
+//   .connect(process.env.MONGO_URL)
+//   .then(() => {
+//     console.log("MongoDB successfuly connected");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//     process.exit(1);
+//   });
 
 const contactsRouter = require("./routes/api/contacts");
 
