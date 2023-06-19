@@ -27,28 +27,34 @@ const getAll = async (req, res, next) => {
 // };
 
 const getById = async (req, res, next) => {
-  console.log(req.params);
-  try {
-    const { contactId } = req.params;
-    console.log(contactId);
-    const result = await contacts.getContactById(contactId);
-    if (!result) {
-      throw HttpError(404, "Not found");
-      // throw HttpError(404, `Contact with id=${id} not found`);
-      // return res.status(404).json({ message: "Not found" });
-    }
-    res.json({
-      status: "success",
-      code: 200,
-      data: {
-        result,
-      },
-    });
-  } catch (error) {
-    // res.status(500).json({ message: "Server error" });
-    next(error);
-  }
+  const { contactId } = req.params;
+  const result = await Contact.findById(contactId);
+  console.log(contactId);
+  res.json(result);
 };
+// const getById = async (req, res, next) => {
+//   console.log(req.params);
+//   try {
+//     const { contactId } = req.params;
+//     console.log(contactId);
+//     const result = await contacts.getContactById(contactId);
+//     if (!result) {
+//       throw HttpError(404, "Not found");
+//       // throw HttpError(404, `Contact with id=${id} not found`);
+//       // return res.status(404).json({ message: "Not found" });
+//     }
+//     res.json({
+//       status: "success",
+//       code: 200,
+//       data: {
+//         result,
+//       },
+//     });
+//   } catch (error) {
+//     // res.status(500).json({ message: "Server error" });
+//     next(error);
+//   }
+// };
 const addPost = async (req, res, next) => {
   const result = await Contact.create(req.body);
   res.status(201).json({ status: "success", code: 201, data: { result } });
