@@ -5,21 +5,26 @@ const contacts = require("../models/contacts");
 const Contact = require("../models/contactModel");
 
 const getAll = async (req, res, next) => {
-  try {
-    const result = await contacts.listContacts();
-
-    res.json({
-      status: "success",
-      code: 200,
-      data: {
-        result,
-      },
-    });
-  } catch (error) {
-    // res.status(500).json({ message: "Server error" });
-    next(error);
-  }
+  const result = await Contact.find();
+  // const result = await Contact.find().select("-v ");
+  res.json(result);
 };
+// const getAll = async (req, res, next) => {
+//   try {
+//     const result = await contacts.listContacts();
+
+//     res.json({
+//       status: "success",
+//       code: 200,
+//       data: {
+//         result,
+//       },
+//     });
+//   } catch (error) {
+//     // res.status(500).json({ message: "Server error" });
+//     next(error);
+//   }
+// };
 
 const getById = async (req, res, next) => {
   console.log(req.params);
