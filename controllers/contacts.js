@@ -2,6 +2,8 @@ const HttpError = require("../helpers");
 const addSchema = require("../schemas");
 const contacts = require("../models/contacts");
 
+const Contact = require("../models/contactModel");
+
 const getAll = async (req, res, next) => {
   try {
     const result = await contacts.listContacts();
@@ -43,21 +45,25 @@ const getById = async (req, res, next) => {
   }
 };
 const addPost = async (req, res, next) => {
-  try {
-    const { error } = addSchema.validate(req.body);
-    console.log(error);
-    console.log(req.body);
-    if (error) {
-      res.status(400).json({ message: "Missing required name field" });
-      throw HttpError(400, error.message);
-    }
-
-    const result = await contacts.addContact(req.body);
-    res.status(201).json(result);
-  } catch (error) {
-    next(error);
-  }
+  const result = await Contact.create(req.body);
+  res.status(201).json({ status: "success", code: 201, data: { result } });
 };
+// const addPost = async (req, res, next) => {
+//   try {
+//     const { error } = addSchema.validate(req.body);
+//     console.log(error);
+//     console.log(req.body);
+//     if (error) {
+//       res.status(400).json({ message: "Missing required name field" });
+//       throw HttpError(400, error.message);
+//     }
+
+//     const result = await contacts.addContact(req.body);
+//     res.status(201).json(result);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 const deleteById = async (req, res, next) => {
   try {
     const { contactId } = req.params;
