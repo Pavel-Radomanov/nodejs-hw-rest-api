@@ -1,6 +1,6 @@
-const HttpError = require("../helpers");
-const addSchema = require("../schemas");
-const contacts = require("../models/contacts");
+// const HttpError = require("../helpers");
+// const addSchema = require("../schemas");
+// const contacts = require("../models/contacts");
 
 const Contact = require("../models/contactModel");
 
@@ -75,40 +75,66 @@ const addPost = async (req, res, next) => {
 //     next(error);
 //   }
 // };
-const deleteById = async (req, res, next) => {
-  try {
-    const { contactId } = req.params;
-    const result = await contacts.removeContact(contactId);
-    if (!result) {
-      throw HttpError(404, "Not found");
-    }
-    throw HttpError(200, "Contact deleted");
-    // res.status(200).json({ message: "Contact deleted" });
-    // res.status(204).send();
-  } catch (error) {
-    next(error);
-  }
-};
-const updateById = async (req, res, next) => {
-  console.log(req.body);
-  try {
-    const { error } = addSchema.validate(req.body);
-    if (error) {
-      // throw HttpError(400, error.message);
-      res.status(400).json({ message: "Missing fields" });
-    }
-    const { contactId } = req.params;
-    console.log(contactId);
-    const result = await contacts.updateContact(contactId, req.body);
 
-    if (!result) {
-      throw HttpError(404, "Not found");
-    }
-    res.json(result);
-  } catch (error) {
-    next(error);
-  }
+const deleteById = async (req, res, next) => {
+  const { contactId } = req.params;
+  const result = await Contact.findByIdAndRemove(contactId);
+  res.json({
+    status: "success",
+    code: 200,
+    message: "contact deleted",
+    data: { result },
+  });
 };
+// const deleteById = async (req, res, next) => {
+//   try {
+//     const { contactId } = req.params;
+//     const result = await contacts.removeContact(contactId);
+//     if (!result) {
+//       throw HttpError(404, "Not found");
+//     }
+//     throw HttpError(200, "Contact deleted");
+//     // res.status(200).json({ message: "Contact deleted" });
+//     // res.status(204).send();
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+// dont work
+const updateById = async (req, res, next) => {
+  const { contactId } = req.params;
+  console.log(contactId);
+  console.log(req.body);
+  const result = await Contact.findByIdAndUpdate(contactId, req.body);
+  res.json(result);
+  // res.json({
+  //   status: "success",
+  //   code: 200,
+  //   data: {
+  //     result,
+  //   },
+  // });
+};
+// const updateById = async (req, res, next) => {
+//   console.log(req.body);
+//   try {
+//     const { error } = addSchema.validate(req.body);
+//     if (error) {
+//       // throw HttpError(400, error.message);
+//       res.status(400).json({ message: "Missing fields" });
+//     }
+//     const { contactId } = req.params;
+//     console.log(contactId);
+//     const result = await contacts.updateContact(contactId, req.body);
+
+//     if (!result) {
+//       throw HttpError(404, "Not found");
+//     }
+//     res.json(result);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 module.exports = {
   getAll,
