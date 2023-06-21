@@ -111,5 +111,5 @@ router.put("/:contactId", ctrl.updateById);
 //     next(error);
 //   }
 // });
-
+router.patch("/:contactId/favorite", ctrl.updateFavorite);
 module.exports = router;

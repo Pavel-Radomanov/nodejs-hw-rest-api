@@ -1,4 +1,4 @@
-// const HttpError = require("../helpers");
+const HttpError = require("../helpers");
 // const addSchema = require("../schemas");
 // const contacts = require("../models/contacts");
 
@@ -135,6 +135,16 @@ const updateById = async (req, res, next) => {
 //     next(error);
 //   }
 // };
+const updateFavorite = async (req, res, next) => {
+  const { contactId } = req.params;
+  const result = await Contact.findByIdAndUpdate(contactId, req.body, {
+    new: true,
+  });
+  if (!result) {
+    throw HttpError(400, "Missing field favorite");
+  }
+  res.json(result);
+};
 
 module.exports = {
   getAll,
@@ -142,4 +152,5 @@ module.exports = {
   addPost,
   deleteById,
   updateById,
+  updateFavorite,
 };
