@@ -100,21 +100,25 @@ const deleteById = async (req, res, next) => {
 //     next(error);
 //   }
 // };
-// dont work
+
 const updateById = async (req, res, next) => {
-  const { contactId } = req.params;
-  console.log(contactId);
+  // console.log(contactId);
   console.log(req.body);
+
+  const { contactId } = req.params;
   const result = await Contact.findByIdAndUpdate(contactId, req.body);
-  res.json(result);
-  // res.json({
-  //   status: "success",
-  //   code: 200,
-  //   data: {
-  //     result,
-  //   },
-  // });
+  if (!result) {
+    throw HttpError(404, "Not found");
+  }
+  res.json({
+    status: "success",
+    code: 200,
+    data: {
+      result,
+    },
+  });
 };
+
 // const updateById = async (req, res, next) => {
 //   console.log(req.body);
 //   try {

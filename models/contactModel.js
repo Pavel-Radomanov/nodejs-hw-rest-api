@@ -31,7 +31,7 @@ const contactSchema = mongoose.Schema({
   // favorite: {
   //   type: Boolean,
   //   required: true,
-  //   // unique: [true, "Duplicated email"],
+  //
   // },
 });
 
