@@ -3,7 +3,7 @@ const logger = require("morgan");
 const cors = require("cors");
 
 const contactsRouter = require("./routes/api/contacts");
-const errorHandler = require("./midelwares/errorHandler");
+const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
 

@@ -2,6 +2,7 @@ const express = require("express");
 const ctrl = require("../../controllers/contacts");
 // const Joi = require("joi");
 const router = express.Router();
+const { ctrlWrapper } = require("../../helpers");
 
 // const contacts = require("../../models/contacts");
 // const HttpError = require("../../helpers/HttpError");
@@ -14,7 +15,9 @@ const router = express.Router();
 //     .pattern(/^\(\d{3}\) \d{3}-\d{4}$/)
 //     .required(),
 // });
-router.get("/", ctrl.getAll);
+
+// router.get("/", ctrl.getAll);
+router.get("/", ctrlWrapper(ctrl.getAll));
 // router.get("/", async (req, res, next) => {
 //   try {
 //     const result = await contacts.listContacts();
@@ -32,7 +35,7 @@ router.get("/", ctrl.getAll);
 //   }
 // });
 
-router.get("/:contactId", ctrl.getById);
+router.get("/:contactId", ctrlWrapper(ctrl.getById));
 // router.get("/:contactId", async (req, res, next) => {
 //   console.log(req.params);
 //   try {
@@ -56,7 +59,7 @@ router.get("/:contactId", ctrl.getById);
 //     next(error);
 //   }
 // });
-router.post("/", ctrl.addPost);
+router.post("/", ctrlWrapper(ctrl.addPost));
 
 // router.post("/", async (req, res, next) => {
 //   try {
@@ -74,7 +77,7 @@ router.post("/", ctrl.addPost);
 //     next(error);
 //   }
 // });
-router.delete("/:contactId", ctrl.deleteById);
+router.delete("/:contactId", ctrlWrapper(ctrl.deleteById));
 // router.delete("/:contactId", async (req, res, next) => {
 //   try {
 //     const { contactId } = req.params;
@@ -90,7 +93,7 @@ router.delete("/:contactId", ctrl.deleteById);
 //   }
 // });
 
-router.put("/:contactId", ctrl.updateById);
+router.put("/:contactId", ctrlWrapper(ctrl.updateById));
 // router.put("/:contactId", async (req, res, next) => {
 //   console.log(req.body);
 //   try {
@@ -111,5 +114,6 @@ router.put("/:contactId", ctrl.updateById);
 //     next(error);
 //   }
 // });
-router.patch("/:contactId/favorite", ctrl.updateFavorite);
+router.patch("/:contactId/favorite", ctrlWrapper(ctrl.updateFavorite));
+
 module.exports = router;
