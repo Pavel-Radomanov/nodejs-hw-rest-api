@@ -2,8 +2,7 @@ const HttpError = require("../helpers");
 // const asyncHandler = require("express-async-handler");
 // const addSchema = require("../schemas");
 // const contacts = require("../models/contacts");
-
-const Contact = require("../models/contactModel");
+const { Contact } = require("../models/contactModel");
 
 const getAll = async (req, res, next) => {
   const result = await Contact.find();
