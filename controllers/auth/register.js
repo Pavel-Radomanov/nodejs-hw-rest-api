@@ -16,8 +16,8 @@ const register = async (req, res) => {
     subscription,
   });
   console.log(password);
-  res.status(201).json({
-    email:newUser.email,
+  res.status(201, "Created").json({
+    email: newUser.email,
     subscription: newUser.subscription,
   });
 };
