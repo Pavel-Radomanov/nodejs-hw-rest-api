@@ -1,5 +1,6 @@
 const express = require("express");
 // const { validation, authenticate } = require("../../middlewares");
+const { authenticate } = require("../../middlewares");
 const { ctrlWrapper } = require("../../helpers");
 const ctrl = require("../../controllers/auth");
 // const { schemas } = require("../../models/user");
@@ -20,7 +21,7 @@ router.post(
 
 // router.get("/current", authenticate, ctrlWrapper(ctrl.getCurrent));
 
-// router.get("/logout", authenticate, ctrlWrapper(ctrl.logout));
+router.get("/logout", authenticate, ctrlWrapper(ctrl.logout));
 
 // router.patch(
 //   "/:id/subscription",
