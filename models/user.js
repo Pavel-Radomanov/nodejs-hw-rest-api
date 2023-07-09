@@ -28,8 +28,10 @@ const userSchema = mongoose.Schema(
       type: String,
       default: "",
     },
-    // token: String,
-    // default: "",
+    avatarURL: {
+      type: String,
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -48,8 +50,18 @@ const registerSchema = Joi.object({
   subscription: Joi.string(),
 });
 
+const loginSchema = Joi.object({
+  email: Joi.string()
+    .required()
+    .messages({ "any.required": "Missing field email" }),
+  password: Joi.string()
+    .min(6)
+    .required()
+    .messages({ "any.required": "Missing field password" }),
+});
+
 const User = mongoose.model("user", userSchema);
-const schemas = { registerSchema };
+const schemas = { registerSchema, loginSchema };
 
 module.exports = {
   User,
