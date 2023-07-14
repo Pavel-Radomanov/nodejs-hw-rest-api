@@ -18,22 +18,3 @@ mongoose
     console.log(error.message);
     process.exit(1);
   });
-
-// const dotenv = require("dotenv");
-
-// dotenv.config({ path: "./.env" });
-
-// console.log(process.env.MONGO_URL);
-// mongoose
-//   .connect(process.env.MONGO_URL)
-
-//   .then(() => {
-//     console.log("MongoDB successfuly connected");
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//     process.exit(1);
-//   });
-// app.listen(3000, () => {
-//   console.log("Server running. Use our API on port: 3000");
-// });

@@ -7,6 +7,8 @@ const authRouter = require("./routes/api/auth");
 const contactsRouter = require("./routes/api/contacts");
 const errorHandler = require("./middlewares/errorHandler");
 
+// const sendEmail = require("./helpers/sendEmail");
+
 const app = express();
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -24,9 +26,5 @@ app.use((req, res) => {
 });
 
 app.use(errorHandler);
-// app.use((err, req, res, next) => {
-//   const { status = 500, message = "Server error" } = err;
-//   res.status(status).json({ message });
-// });
 
 module.exports = app;
