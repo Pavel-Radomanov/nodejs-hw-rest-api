@@ -67,9 +67,13 @@ const loginSchema = Joi.object({
     .required()
     .messages({ "any.required": "Missing field password" }),
 });
-
+const verifyEmailSchema = Joi.object({
+  email: Joi.string()
+    .required()
+    .messages({ "any.required": "Missing field email" }),
+});
 const User = mongoose.model("user", userSchema);
-const schemas = { registerSchema, loginSchema };
+const schemas = { registerSchema, loginSchema, verifyEmailSchema };
 
 module.exports = {
   User,
