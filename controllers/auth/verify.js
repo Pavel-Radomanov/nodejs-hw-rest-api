@@ -13,7 +13,7 @@ const verify = async (req, res) => {
     verify: true,
     verificationToken: null,
   });
-  res.json({
+  return res.json({
     message: "Verification successful",
   });
 };
