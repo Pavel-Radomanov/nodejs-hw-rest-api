@@ -9,5 +9,5 @@ module.exports = {
   validation,
   isValidId,
   authenticate,
-  upload
+  upload,
 };

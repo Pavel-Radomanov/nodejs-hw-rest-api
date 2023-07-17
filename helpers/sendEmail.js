@@ -4,25 +4,42 @@ require("dotenv").config();
 console.log(META_PASSWORD);
 
 const nodemailerConfig = {
-  host: "smtp.meta.ua",
+  // host: "smtp.meta.ua",
+  // port: 465,
+  // secure: true,
+  // auth: {
+  //   user: "radomanov.pavlo@meta.ua",
+  //   pass: META_PASSWORD,
+  service: "gmail",
+  host: "smtp.gmail.com",
   port: 465,
   secure: true,
   auth: {
-    user: "radomanov.pavlo@meta.ua",
+    user: "p79702660@gmail.com",
     pass: META_PASSWORD,
   },
 };
 const transporter = nodemailer.createTransport(nodemailerConfig);
 
 const sendEmail = async (data) => {
-  const email = { ...data, from: "radomanov.pavlo@meta.ua" };
+  // const email = { ...data, from: "radomanov.pavlo@meta.ua" };
+  const email = { ...data, from: "p79702660@gmail.com" };
   await transporter.sendMail(email);
 
   return true;
 };
-console.log("smtp&");
 
 module.exports = sendEmail;
+
+// const nodemailerConfig = {
+//   host: "smtp.meta.ua",
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     user: "radomanov.pavlo@meta.ua",
+//     pass: META_PASSWORD,
+//   },
+// };
 
 // const email = {
 //   to: "radomanov@i.ua",
