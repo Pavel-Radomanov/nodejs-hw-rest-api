@@ -1,6 +1,8 @@
 const { User } = require("../../models/user");
 // const { HttpError, sendEmail } = require("../../helpers");
-const { sendEmail } = require("../../helpers");
+// const { sendEmail } = require("../../helpers");
+const { sendEmailSG } = require("../../helpers");
+
 const bcrypt = require("bcryptjs");
 const gravatar = require("gravatar");
 
@@ -45,7 +47,8 @@ const register = async (req, res) => {
       </a>`,
   };
 
-  await sendEmail(verifyEmail);
+  // await sendEmail(verifyEmail);
+  await sendEmailSG(verifyEmail);
 
   return res.status(201, "Created").json({
     email: newUser.email,

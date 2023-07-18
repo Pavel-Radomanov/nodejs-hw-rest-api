@@ -1,5 +1,6 @@
 const { User } = require("../../models/user");
-const { HttpError, sendEmail } = require("../../helpers");
+// const { HttpError, sendEmail } = require("../../helpers");
+const { HttpError, sendEmailSG } = require("../../helpers");
 
 const { BASE_URL } = process.env;
 
@@ -21,7 +22,9 @@ const resendVerify = async (req, res) => {
     return mail;
   };
   const mail = createVerifyEmail(email, user.verificationToken);
-  await sendEmail(mail);
+
+  // await sendEmail(mail);
+  await sendEmailSG(mail);
 
   res.json({
     message: "Verification email sent",

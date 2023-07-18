@@ -3,6 +3,7 @@ const isValidId = require("./isValidId");
 const authenticate = require("./authenticate");
 const validation = require("./validation");
 const upload = require("./upload");
+const errorHandler = require("./errorHandler");
 
 module.exports = {
   validationContact,
@@ -10,4 +11,5 @@ module.exports = {
   isValidId,
   authenticate,
   upload,
+  errorHandler,
 };

@@ -7,8 +7,6 @@ const authRouter = require("./routes/api/auth");
 const contactsRouter = require("./routes/api/contacts");
 const errorHandler = require("./middlewares/errorHandler");
 
-// const sendEmail = require("./helpers/sendEmail");
-
 const app = express();
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
