@@ -1,5 +1,5 @@
 const { User } = require("../../models/user");
-// const { HttpError, sendEmail } = require("../../helpers");
+const { HttpError } = require("../../helpers");
 // const { sendEmail } = require("../../helpers");
 const { sendEmailSG } = require("../../helpers");
 
@@ -11,10 +11,10 @@ const { BASE_URL } = process.env;
 
 const register = async (req, res) => {
   const { email, password, subscription } = req.body;
-  // const user = await User.findOne({ email });
-  // if (user) {
-  //   throw HttpError(409, "Email in use");
-  // }
+  const user = await User.findOne({ email });
+  if (user) {
+    throw HttpError(409, "Email in use");
+  }
   const hashPassword = await bcrypt.hash(password, 10);
   console.log(hashPassword);
   // const avatarURL = gravatar.url(email);
@@ -41,7 +41,7 @@ const register = async (req, res) => {
     subject: "Verify email",
     html: `<a
         target="_blanc"
-        href="${BASE_URL}/users/verify/${verificationToken}"
+        href="${BASE_URL}/api/auth/verify/${verificationToken}"
       >
         Click for verify email
       </a>`,

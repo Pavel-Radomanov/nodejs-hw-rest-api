@@ -57,6 +57,11 @@ const registerSchema = Joi.object({
     .messages({ "any.required": "Missing field password" }),
   subscription: Joi.string(),
 });
+// const registerSchema = Joi.object({
+//   // name: Joi.string().required(),
+//   email: Joi.string().required(),
+//   password: Joi.string().min(6).required(),
+// });
 
 const loginSchema = Joi.object({
   email: Joi.string()
@@ -67,11 +72,11 @@ const loginSchema = Joi.object({
     .required()
     .messages({ "any.required": "Missing field password" }),
 });
+
 const verifyEmailSchema = Joi.object({
-  email: Joi.string()
-    .required()
-    .messages({ "any.required": "Missing field email" }),
+  email: Joi.string().required(),
 });
+
 const User = mongoose.model("user", userSchema);
 const schemas = { registerSchema, loginSchema, verifyEmailSchema };
 
